@@ -28,11 +28,15 @@ Built at the intersection of 5 legendary pop-culture pillars:
 - **🎛️ Granular Distraction Targets**:
   - **Today’s News Module**: Hides AI news carousels, sidebar article snippets, and headlines.
   - **Trends & "What’s Happening"**: Hides viral topic sidebars and trending cards.
+  - **Today’s News Module**: Hides AI news carousels, sidebar article snippets, and headlines.
   - **"Who to Follow"**: Removes algorithmic suggested accounts.
+  - **Notifications**: Hides notification Bell link and unread counter badges.
+  - **Chats & Direct Messages**: Hides Messages nav item and the floating bottom-right chat dock.
+  - **Audio & Video Calls**: Blocks call buttons and start-a-call prompts across DMs.
+  - **Search & Activity History**: Hides recent search dropdown items and history suggestions.
   - **Grok AI**: Blocks navigation drawer, sidebar widgets, and inline tweet prompt buttons.
   - **Premium & Verified Promos**: Blocks subscription upsells and badge prompts.
   - **Tweet View Counts / Impressions**: Hides view count metrics from all tweets.
-  - **Sidebar / Header Navigation Bar**: Option to collapse `<header role="banner">` and right sidebar, centering your main timeline feed.
   - **Explore Tab**: Option to hide the explore magnifying glass from navigation.
 - **🚫 Permanent Cleanups**: Jobs tab, Communities tab, and bottom floating signup/cookie banners are permanently removed.
 - **✍️ Custom User Rules**: Add any custom CSS selector directly from the popup with 1-click restore.

@@ -6,11 +6,13 @@ chrome.runtime.onInstalled.addListener((details) => {
   const DEFAULT_SETTINGS = {
     master_active: true,
     theme: "sicario", // sicario, middle_out, batman, reacher, pitchers
-    hide_right_sidebar: true,
-    hide_left_nav: false,
     hide_whats_happening: true,
     hide_todays_news: true,
     hide_who_to_follow: true,
+    hide_notifications: true,
+    hide_chats: true,
+    hide_calls: true,
+    hide_history: true,
     hide_grok: true,
     hide_premium_promos: true,
     hide_view_counts: true,

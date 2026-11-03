@@ -116,52 +116,49 @@
         display: none !important;
       }
     `,
-    hide_right_sidebar: `
-      /* Target the right sidebar column and complementary aside */
-      [data-testid="sidebarColumn"],
-      div[data-testid="sidebarColumn"],
-      [role="complementary"],
-      aside[role="complementary"] {
+    hide_notifications: `
+      a[href="/notifications"],
+      [data-testid="AppTabBar_Notifications_Link"],
+      div:has(> a[href="/notifications"]) {
         display: none !important;
-        width: 0 !important;
-        min-width: 0 !important;
-        max-width: 0 !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        flex-grow: 0 !important;
-        flex-shrink: 1 !important;
-      }
-
-      /* Center and widen primary timeline feed when right sidebar is hidden */
-      [data-testid="primaryColumn"],
-      div[data-testid="primaryColumn"] {
-        max-width: 680px !important;
-        width: 100% !important;
-        margin: 0 auto !important;
-        border-right-width: 1px !important;
-      }
-
-      main[role="main"] {
-        align-items: center !important;
-      }
-
-      main[role="main"] > div > div {
-        justify-content: center !important;
-        max-width: 100% !important;
       }
     `,
-    hide_left_nav: `
-      header[role="banner"],
-      header[role="banner"] > div {
+    hide_chats: `
+      a[href="/i/chat"],
+      a[href="/messages"],
+      [data-testid="AppTabBar_DirectMessage_Link"],
+      [data-testid="DMDrawer"],
+      div[data-testid="DMDrawer"],
+      #layers div:has(> [data-testid="DMDrawer"]),
+      div:has(> a[href="/i/chat"]),
+      div:has(> a[href="/messages"]) {
         display: none !important;
-        width: 0 !important;
-        min-width: 0 !important;
-        max-width: 0 !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        flex-grow: 0 !important;
+      }
+    `,
+    hide_calls: `
+      [data-testid="callButton"],
+      [data-testid="audioCall"],
+      [data-testid="videoCall"],
+      button[aria-label*="Audio call"],
+      button[aria-label*="Video call"],
+      button[aria-label*="Call" i],
+      button[aria-label*="call" i],
+      [aria-label*="Start a call"],
+      [data-testid="AppTabBar_Calls_Link"],
+      a[href*="/calls"] {
+        display: none !important;
+      }
+    `,
+    hide_history: `
+      [data-testid="typeaheadRecentSearchesItem"],
+      [data-testid="typeaheadRecentSearchesClear"],
+      [data-testid="clearRecentSearches"],
+      [data-testid="SearchHistory"],
+      div:has(> [data-testid="typeaheadRecentSearchesItem"]),
+      div[aria-label*="Recent searches" i],
+      [data-testid*="history" i],
+      a[href*="/history"] {
+        display: none !important;
       }
     `
   };
@@ -170,11 +167,13 @@
   const DEFAULT_SETTINGS = {
     master_active: true,
     theme: "sicario",
-    hide_right_sidebar: true,
-    hide_left_nav: false,
     hide_whats_happening: true,
     hide_todays_news: true,
     hide_who_to_follow: true,
+    hide_notifications: true,
+    hide_chats: true,
+    hide_calls: true,
+    hide_history: true,
     hide_grok: true,
     hide_premium_promos: true,
     hide_view_counts: true,
@@ -288,51 +287,59 @@
       });
     }
 
-    // Right Sidebar Entirely failsafe
-    const sidebars = document.querySelectorAll('[data-testid="sidebarColumn" i], [role="complementary"], aside[role="complementary"]');
-    sidebars.forEach(sb => {
-      if (currentSettings.hide_right_sidebar) {
-        sb.style.setProperty('display', 'none', 'important');
-        sb.style.setProperty('visibility', 'hidden', 'important');
-        sb.style.setProperty('width', '0px', 'important');
-        sb.style.setProperty('min-width', '0px', 'important');
-        sb.style.setProperty('max-width', '0px', 'important');
-        sb.style.setProperty('flex-grow', '0', 'important');
-      } else {
-        sb.style.removeProperty('display');
-        sb.style.removeProperty('visibility');
-        sb.style.removeProperty('width');
-        sb.style.removeProperty('min-width');
-        sb.style.removeProperty('max-width');
-        sb.style.removeProperty('flex-grow');
-      }
-    });
-
-    const primary = document.querySelector('[data-testid="primaryColumn"]');
-    if (primary) {
-      if (currentSettings.hide_right_sidebar) {
-        primary.style.setProperty('margin', '0 auto', 'important');
-        primary.style.setProperty('max-width', '680px', 'important');
-      } else {
-        primary.style.removeProperty('margin');
-        primary.style.removeProperty('max-width');
-      }
+    // Notifications failsafe
+    if (currentSettings.hide_notifications) {
+      document.querySelectorAll('a[href="/notifications"], [data-testid="AppTabBar_Notifications_Link"]').forEach(el => {
+        el.style.setProperty('display', 'none', 'important');
+      });
+    } else {
+      document.querySelectorAll('a[href="/notifications"], [data-testid="AppTabBar_Notifications_Link"]').forEach(el => {
+        el.style.removeProperty('display');
+      });
     }
 
-    // Left Navigation Bar (header[role="banner"]) failsafe
-    const headerBanners = document.querySelectorAll('header[role="banner"]');
-    headerBanners.forEach(headerBanner => {
-      if (currentSettings.hide_left_nav) {
-        headerBanner.style.setProperty('display', 'none', 'important');
-        headerBanner.style.setProperty('visibility', 'hidden', 'important');
-        headerBanner.style.setProperty('width', '0px', 'important');
-        headerBanner.style.setProperty('max-width', '0px', 'important');
-      } else {
-        headerBanner.style.removeProperty('display');
-        headerBanner.style.removeProperty('visibility');
-        headerBanner.style.removeProperty('width');
-        headerBanner.style.removeProperty('max-width');
-      }
+    // Chats / Direct Messages failsafe
+    if (currentSettings.hide_chats) {
+      document.querySelectorAll('a[href="/i/chat"], a[href="/messages"], [data-testid="AppTabBar_DirectMessage_Link"], [data-testid="DMDrawer"]').forEach(el => {
+        el.style.setProperty('display', 'none', 'important');
+      });
+    } else {
+      document.querySelectorAll('a[href="/i/chat"], a[href="/messages"], [data-testid="AppTabBar_DirectMessage_Link"], [data-testid="DMDrawer"]').forEach(el => {
+        el.style.removeProperty('display');
+      });
+    }
+
+    // Audio & Video Calls failsafe
+    if (currentSettings.hide_calls) {
+      document.querySelectorAll('[data-testid="callButton"], button[aria-label*="call" i], button[aria-label*="Call" i]').forEach(el => {
+        el.style.setProperty('display', 'none', 'important');
+      });
+    } else {
+      document.querySelectorAll('[data-testid="callButton"], button[aria-label*="call" i], button[aria-label*="Call" i]').forEach(el => {
+        el.style.removeProperty('display');
+      });
+    }
+
+    // Search History & Recent Searches failsafe
+    if (currentSettings.hide_history) {
+      document.querySelectorAll('[data-testid="typeaheadRecentSearchesItem"], [data-testid="typeaheadRecentSearchesClear"]').forEach(el => {
+        el.style.setProperty('display', 'none', 'important');
+      });
+    } else {
+      document.querySelectorAll('[data-testid="typeaheadRecentSearchesItem"], [data-testid="typeaheadRecentSearchesClear"]').forEach(el => {
+        el.style.removeProperty('display');
+      });
+    }
+
+    // Clean up any residual styles on sidebar/header if previously set
+    document.querySelectorAll('[data-testid="sidebarColumn" i], [role="complementary"], header[role="banner"], [data-testid="primaryColumn"]').forEach(el => {
+      el.style.removeProperty('display');
+      el.style.removeProperty('visibility');
+      el.style.removeProperty('width');
+      el.style.removeProperty('min-width');
+      el.style.removeProperty('max-width');
+      el.style.removeProperty('flex-grow');
+      el.style.removeProperty('margin');
     });
   }
 
