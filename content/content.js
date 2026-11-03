@@ -61,18 +61,6 @@
         display: none !important;
       }
     `,
-    hide_todays_news: `
-      /* Direct news articles & items */
-      [data-testid*="news_sidebar_article"],
-      [data-testid*="news_sidebar"],
-      /* Target the news card container */
-      [data-testid="sidebarColumn"] div:has(> div > [data-testid*="news_sidebar_article"]),
-      div:has(> div > [data-testid*="news_sidebar_article"]),
-      section:has([data-testid*="news_sidebar_article"]),
-      [data-testid="sidebarColumn"] section:has([data-testid*="news_sidebar_article"]) {
-        display: none !important;
-      }
-    `,
     hide_who_to_follow: `
       [aria-label="Who to follow"],
       aside[aria-label*="Who to follow"],
@@ -168,7 +156,6 @@
     master_active: true,
     theme: "sicario",
     hide_whats_happening: true,
-    hide_todays_news: true,
     hide_who_to_follow: true,
     hide_notifications: true,
     hide_chats: true,
@@ -227,48 +214,6 @@
           const parent = section.parentElement;
           if (parent && parent.tagName === 'DIV' && parent.getAttribute('data-testid') !== 'sidebarColumn') {
             parent.style.setProperty('display', 'none', 'important');
-          }
-        }
-      });
-    }
-
-    // Today's News failsafe
-    if (currentSettings.hide_todays_news) {
-      const newsArticles = document.querySelectorAll('[data-testid*="news_sidebar_article"], [data-testid*="news_sidebar"]');
-      newsArticles.forEach(art => {
-        art.style.setProperty('display', 'none', 'important');
-        const card = art.closest('.r-13awgt0') || art.parentElement?.parentElement;
-        if (card && card.getAttribute('data-testid') !== 'sidebarColumn') {
-          card.style.setProperty('display', 'none', 'important');
-        }
-      });
-
-      const headings = document.querySelectorAll('h2');
-      headings.forEach(h2 => {
-        const text = h2.textContent || "";
-        if (text.includes("Today’s News") || text.includes("Today's News")) {
-          const card = h2.closest('.r-13awgt0') || h2.closest('section') || h2.parentElement?.parentElement;
-          if (card && card.getAttribute('data-testid') !== 'sidebarColumn') {
-            card.style.setProperty('display', 'none', 'important');
-          }
-        }
-      });
-    } else {
-      const newsArticles = document.querySelectorAll('[data-testid*="news_sidebar_article"], [data-testid*="news_sidebar"]');
-      newsArticles.forEach(art => {
-        art.style.removeProperty('display');
-        const card = art.closest('.r-13awgt0') || art.parentElement?.parentElement;
-        if (card) {
-          card.style.removeProperty('display');
-        }
-      });
-      const headings = document.querySelectorAll('h2');
-      headings.forEach(h2 => {
-        const text = h2.textContent || "";
-        if (text.includes("Today’s News") || text.includes("Today's News")) {
-          const card = h2.closest('.r-13awgt0') || h2.closest('section') || h2.parentElement?.parentElement;
-          if (card) {
-            card.style.removeProperty('display');
           }
         }
       });
@@ -417,11 +362,6 @@
     const followParent = el.closest('[aria-label="Who to follow"]');
     if (followParent) {
       return '[aria-label="Who to follow"]';
-    }
-
-    const newsParent = el.closest('[data-testid*="news_sidebar_article"]');
-    if (newsParent) {
-      return '[data-testid*="news_sidebar_article"]';
     }
 
     // 1. Check data-testid directly or on close wrapper

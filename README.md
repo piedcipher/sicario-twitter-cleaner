@@ -23,12 +23,10 @@ Built at the intersection of 5 legendary pop-culture pillars:
 ## 🚀 Key Features
 
 - **⚡ Zero-Flicker Execution**: Injected directly at `document_start` before React paints the DOM — no awkward UI popping.
-- **🛡️ 1-Click "Hide All Noise" Shield**: Master noise switch to vaporize Trends, Today's News, Who to Follow, Grok AI, and metrics in a single tap.
+- **🛡️ 1-Click "Hide All Noise" Shield**: Master noise switch to vaporize Trends, Who to Follow, Grok AI, and metrics in a single tap.
 - **🎯 Point & Click Element Eliminator**: Interactive crosshair tool. Hover over *any* unwanted element on Twitter/X and click to permanently vaporize it.
 - **🎛️ Granular Distraction Targets**:
-  - **Today’s News Module**: Hides AI news carousels, sidebar article snippets, and headlines.
   - **Trends & "What’s Happening"**: Hides viral topic sidebars and trending cards.
-  - **Today’s News Module**: Hides AI news carousels, sidebar article snippets, and headlines.
   - **"Who to Follow"**: Removes algorithmic suggested accounts.
   - **Notifications**: Hides notification Bell link and unread counter badges.
   - **Chats & Direct Messages**: Hides Messages nav item and the floating bottom-right chat dock.

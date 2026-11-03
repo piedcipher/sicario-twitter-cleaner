@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Noise keys grouped under "Hide All Noise"
   const NOISE_KEYS = [
     "hide_whats_happening",
-    "hide_todays_news",
     "hide_who_to_follow",
     "hide_notifications",
     "hide_chats",
@@ -44,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // All granular toggle keys
   const TOGGLE_KEYS = [
     "hide_whats_happening",
-    "hide_todays_news",
     "hide_who_to_follow",
     "hide_notifications",
     "hide_chats",
@@ -60,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
     master_active: true,
     theme: "sicario",
     hide_whats_happening: true,
-    hide_todays_news: true,
     hide_who_to_follow: true,
     hide_notifications: true,
     hide_chats: true,

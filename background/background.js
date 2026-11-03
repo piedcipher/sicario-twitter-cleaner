@@ -7,7 +7,6 @@ chrome.runtime.onInstalled.addListener((details) => {
     master_active: true,
     theme: "sicario", // sicario, middle_out, batman, reacher, pitchers
     hide_whats_happening: true,
-    hide_todays_news: true,
     hide_who_to_follow: true,
     hide_notifications: true,
     hide_chats: true,
