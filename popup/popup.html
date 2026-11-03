@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sicario — Twitter UI Eliminator</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body data-theme="sicario">
+  <div class="m3-scaffold">
+    
+    <!-- Material 3 Top App Bar -->
+    <header class="m3-top-app-bar">
+      <div class="m3-brand-container">
+        <div class="m3-logo-avatar">
+          <img src="../icons/logo.svg" alt="Sicario Logo" class="m3-logo-img" id="theme-logo">
+        </div>
+        <div class="m3-brand-text">
+          <div class="m3-title-row">
+            <h1 class="m3-headline-small" id="display-title">SICARIO</h1>
+            <span class="m3-badge-tonal">v1.2</span>
+          </div>
+          <span class="m3-body-small m3-tagline" id="display-tagline">"Plata o Plomo. Eliminate UI without mercy."</span>
+        </div>
+      </div>
+
+      <!-- Master Power Switch -->
+      <div class="m3-master-switch-box">
+        <label class="m3-switch" title="Master Toggle">
+          <input type="checkbox" id="master-toggle" checked>
+          <span class="m3-switch-track">
+            <span class="m3-switch-thumb"></span>
+          </span>
+        </label>
+        <span class="m3-label-micro" id="master-status">ON</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="m3-content">
+
+      <!-- M3 Segmented Button Group (Themes) -->
+      <div class="m3-segmented-control-wrapper">
+        <div class="m3-segmented-control" role="tablist">
+          <button class="m3-segment-btn active" data-theme="sicario" role="tab">
+            <span class="m3-segment-label">Sicario</span>
+          </button>
+          <button class="m3-segment-btn" data-theme="middle_out" role="tab">
+            <span class="m3-segment-label">Middle-Out</span>
+          </button>
+          <button class="m3-segment-btn" data-theme="batman" role="tab">
+            <span class="m3-segment-label">Batman</span>
+          </button>
+          <button class="m3-segment-btn" data-theme="reacher" role="tab">
+            <span class="m3-segment-label">Reacher</span>
+          </button>
+          <button class="m3-segment-btn" data-theme="pitchers" role="tab">
+            <span class="m3-segment-label">Pitchers</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- HERO 1: ONE TOGGLE TO HIDE NOISE -->
+      <label class="m3-noise-hero-card" for="hide_all_noise">
+        <div class="m3-noise-icon-container">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="m3-noise-svg">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+        </div>
+        <div class="m3-noise-text">
+          <div class="m3-noise-title-row">
+            <span class="m3-noise-title">Hide All Noise</span>
+            <span class="m3-badge-highlight">1-CLICK</span>
+          </div>
+          <span class="m3-noise-desc">Instantly kills Trends, Who to Follow, Grok, Ads & Metrics</span>
+        </div>
+        <span class="m3-switch" title="Toggle All Noise">
+          <input type="checkbox" id="hide_all_noise" checked>
+          <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+        </span>
+      </label>
+
+      <!-- HERO 2: Point & Click Eliminator -->
+      <button class="m3-hero-action-card" id="start-picker-btn">
+        <div class="m3-hero-icon-container">
+          <svg class="m3-crosshair-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8"></circle>
+            <line x1="12" y1="2" x2="12" y2="6"></line>
+            <line x1="12" y1="18" x2="12" y2="22"></line>
+            <line x1="2" y1="12" x2="6" y2="12"></line>
+            <line x1="18" y1="12" x2="22" y2="12"></line>
+          </svg>
+        </div>
+        <div class="m3-hero-text">
+          <span class="m3-title-medium">Point & Click to Eliminate</span>
+          <span class="m3-body-small">Click any unwanted element on Twitter to vaporize it</span>
+        </div>
+        <div class="m3-hero-trailing-arrow">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </button>
+
+      <!-- EXPANDABLE ACCORDION: Granular Individual Controls -->
+      <div class="m3-accordion-card" id="granular-accordion">
+        <button class="m3-accordion-header" id="granular-accordion-trigger" type="button" aria-expanded="false">
+          <div class="m3-accordion-header-left">
+            <svg class="m3-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="4" y1="21" x2="4" y2="14"></line>
+              <line x1="4" y1="10" x2="4" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12" y2="3"></line>
+              <line x1="20" y1="21" x2="20" y2="16"></line>
+              <line x1="20" y1="12" x2="20" y2="3"></line>
+              <line x1="1" y1="14" x2="7" y2="14"></line>
+              <line x1="9" y1="8" x2="15" y2="8"></line>
+              <line x1="17" y1="16" x2="23" y2="16"></line>
+            </svg>
+            <span class="m3-accordion-title">Granular Target Toggles</span>
+          </div>
+          <div class="m3-accordion-header-right">
+            <span class="m3-badge-surface" id="active-count-badge">6 ACTIVE</span>
+            <svg class="m3-chevron-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </div>
+        </button>
+
+        <div class="m3-accordion-collapse" id="granular-accordion-collapse">
+          <div class="m3-accordion-content m3-list-group">
+            
+            <!-- Trends / What's Happening -->
+            <label class="m3-list-item" for="hide_whats_happening">
+              <div class="m3-list-item-content">
+                <span class="m3-list-title">Trends & "What’s Happening"</span>
+                <span class="m3-list-subtitle">Hides viral topics and trending sidebar card</span>
+              </div>
+              <span class="m3-switch">
+                <input type="checkbox" id="hide_whats_happening" checked>
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+
+            <!-- Today's News -->
+            <label class="m3-list-item" for="hide_todays_news">
+              <div class="m3-list-item-content">
+                <span class="m3-list-title">Today’s News Module</span>
+                <span class="m3-list-subtitle">Hides AI news summaries &amp; sidebar news articles</span>
+              </div>
+              <span class="m3-switch">
+                <input type="checkbox" id="hide_todays_news" checked>
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+
+            <!-- Who to Follow -->
+            <label class="m3-list-item" for="hide_who_to_follow">
+              <div class="m3-list-item-content">
+                <span class="m3-list-title">"Who to Follow" Suggestions</span>
+                <span class="m3-list-subtitle">Removes algorithmic suggested accounts</span>
+              </div>
+              <span class="m3-switch">
+                <input type="checkbox" id="hide_who_to_follow" checked>
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+
+            <!-- Grok AI -->
+            <label class="m3-list-item" for="hide_grok">
+              <div class="m3-list-item-content">
+                <span class="m3-list-title">Grok AI (Nav & Feed Prompts)</span>
+                <span class="m3-list-subtitle">Hides navigation shortcut and AI feed drawers</span>
+              </div>
+              <span class="m3-switch">
+                <input type="checkbox" id="hide_grok" checked>
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+
+            <!-- Premium & Verified Promos -->
+            <label class="m3-list-item" for="hide_premium_promos">
+              <div class="m3-list-item-content">
+                <span class="m3-list-title">Premium & Verified Upsells</span>
+                <span class="m3-list-subtitle">Blocks subscription promos & badges</span>
+              </div>
+              <span class="m3-switch">
+                <input type="checkbox" id="hide_premium_promos" checked>
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+
+            <!-- View Counts -->
+            <label class="m3-list-item" for="hide_view_counts">
+              <div class="m3-list-item-content">
+                <span class="m3-list-title">Tweet View Counts / Impressions</span>
+                <span class="m3-list-subtitle">Hides impression metrics on posts</span>
+              </div>
+              <span class="m3-switch">
+                <input type="checkbox" id="hide_view_counts" checked>
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+
+            <!-- Right / Navigation Bar -->
+            <label class="m3-list-item" for="hide_right_sidebar">
+              <div class="m3-list-item-content">
+                <span class="m3-list-title">Sidebar / Navigation Bar</span>
+                <span class="m3-list-subtitle">Hides &lt;header role="banner"&gt; &amp; right rail</span>
+              </div>
+              <span class="m3-switch">
+                <input type="checkbox" id="hide_right_sidebar">
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+
+            <!-- Explore Nav -->
+            <label class="m3-list-item" for="hide_explore_tab">
+              <div class="m3-list-item-content">
+                <span class="m3-list-title">Explore Navigation Tab</span>
+                <span class="m3-list-subtitle">Removes Explore magnifying glass</span>
+              </div>
+              <span class="m3-switch">
+                <input type="checkbox" id="hide_explore_tab">
+                <span class="m3-switch-track"><span class="m3-switch-thumb"></span></span>
+              </span>
+            </label>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPANDABLE ACCORDION: Custom Elimination Rules -->
+      <div class="m3-accordion-card" id="custom-accordion">
+        <button class="m3-accordion-header" id="custom-accordion-trigger" type="button" aria-expanded="false">
+          <div class="m3-accordion-header-left">
+            <svg class="m3-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <span class="m3-accordion-title">Custom Rules</span>
+          </div>
+          <div class="m3-accordion-header-right">
+            <span class="m3-badge-surface" id="custom-count-badge">0 RULES</span>
+            <svg class="m3-chevron-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </div>
+        </button>
+
+        <div class="m3-accordion-collapse" id="custom-accordion-collapse">
+          <div class="m3-accordion-content m3-custom-container">
+            <div class="m3-input-field-row">
+              <div class="m3-text-field">
+                <input type="text" id="custom-selector-input" placeholder="CSS selector e.g. [data-testid=&quot;chat-drawer&quot;]" autocomplete="off" spellcheck="false" />
+              </div>
+              <button id="add-custom-btn" class="m3-btn-filled" title="Add Rule">+ Add</button>
+            </div>
+
+            <div class="m3-custom-rules-list" id="custom-rules-list">
+              <div class="m3-empty-state">
+                <span>No custom rules yet. Point & click or type a selector above.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Material 3 Footer -->
+    <footer class="m3-footer">
+      <div class="m3-status-indicator">
+        <span class="m3-pulse-dot"></span>
+        <span class="m3-label-small">Active on X / Twitter</span>
+      </div>
+      <button class="m3-btn-text" id="reset-defaults-btn">Reset Defaults</button>
+    </footer>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

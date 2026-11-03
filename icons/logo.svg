@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141824"/>
+      <stop offset="50%" stop-color="#0A0D14"/>
+      <stop offset="100%" stop-color="#05070A"/>
+    </linearGradient>
+
+    <!-- Electric Amber Gold Gradient -->
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="50%" stop-color="#FFB300"/>
+      <stop offset="100%" stop-color="#FF8F00"/>
+    </linearGradient>
+
+    <!-- Hot Laser Crimson -->
+    <radialGradient id="laserCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="35%" stop-color="#FF3366"/>
+      <stop offset="85%" stop-color="#FF1744"/>
+      <stop offset="100%" stop-color="#D50000"/>
+    </radialGradient>
+
+    <!-- Drop Shadow -->
+    <filter id="neonShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#FFB300" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- 1. High-Contrast Obsidian Squircle Base -->
+  <rect x="20" y="20" width="472" height="472" rx="140" fill="url(#bgGrad)" stroke="url(#goldGlow)" stroke-width="12" filter="url(#neonShadow)"/>
+  
+  <!-- 2. Inner Tactical Shield Bezel -->
+  <rect x="52" y="52" width="408" height="408" rx="112" fill="#0E121B" stroke="rgba(255, 255, 255, 0.12)" stroke-width="3"/>
+
+  <!-- 3. Glowing Tactical Reticle Ring -->
+  <circle cx="256" cy="256" r="148" fill="none" stroke="url(#goldGlow)" stroke-width="10" stroke-dasharray="14 8" opacity="0.85"/>
+  <circle cx="256" cy="256" r="110" fill="none" stroke="url(#goldGlow)" stroke-width="6" opacity="0.6"/>
+
+  <!-- 4. Iconic Tactical 'S' Chevrons (Middle-Out + Batman Cowl Wings) -->
+  <path d="M 148 144 L 256 124 L 348 196" fill="none" stroke="url(#goldGlow)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 364 368 L 256 388 L 164 316" fill="none" stroke="url(#goldGlow)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 5. Razor-Sharp Crosshair Ticks (White Hot Contrast) -->
+  <line x1="256" y1="92" x2="256" y2="192" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+  <line x1="256" y1="320" x2="256" y2="420" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+  <line x1="92" y1="256" x2="192" y2="256" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+  <line x1="320" y1="256" x2="420" y2="256" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- 6. Glowing Electric Laser Pinpoint Core -->
+  <circle cx="256" cy="256" r="36" fill="url(#laserCore)"/>
+  <circle cx="256" cy="256" r="14" fill="#FFFFFF"/>
+</svg>

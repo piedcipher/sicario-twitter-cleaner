@@ -1,0 +1,795 @@
+/* ==========================================================================
+   SICARIO — Material Design 3 / Modern Design System
+   Expressive Surfaces, M3 Tonal Palette, Dynamic Elevation & Spring Easing
+   ========================================================================== */
+
+:root {
+  /* Material 3 Base Design Tokens */
+  --md-sys-color-surface: #0A0C10;
+  --md-sys-color-surface-container: #12151C;
+  --md-sys-color-surface-container-high: #181C26;
+  --md-sys-color-surface-container-highest: #202633;
+  --md-sys-color-outline-variant: rgba(255, 255, 255, 0.08);
+  --md-sys-color-outline: rgba(255, 255, 255, 0.16);
+  --md-sys-color-on-surface: #F0F2F7;
+  --md-sys-color-on-surface-variant: #8E99AE;
+  --md-sys-color-surface-tint: rgba(255, 255, 255, 0.04);
+
+  /* Default Theme: Sicario (Refined Champagne Gold & Ruby) */
+  --md-sys-color-primary: #E5B350;
+  --md-sys-color-on-primary: #1C1300;
+  --md-sys-color-primary-container: #332400;
+  --md-sys-color-on-primary-container: #FFE194;
+  --md-sys-color-accent: #FF3B5C;
+  --md-sys-glow: rgba(229, 179, 80, 0.2);
+
+  /* M3 Motion Easing */
+  --md-sys-motion-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1);
+}
+
+/* Theme 1: Sicario (Narcos Gold & Crimson) */
+body[data-theme="sicario"] {
+  --md-sys-color-primary: #E5B350;
+  --md-sys-color-on-primary: #1C1300;
+  --md-sys-color-primary-container: #362602;
+  --md-sys-color-on-primary-container: #FFE29C;
+  --md-sys-color-accent: #FF3B5C;
+  --md-sys-glow: rgba(229, 179, 80, 0.25);
+}
+
+/* Theme 2: Middle-Out (Silicon Valley Pied Piper Mint) */
+body[data-theme="middle_out"] {
+  --md-sys-color-surface: #070D0B;
+  --md-sys-color-surface-container: #0E1A16;
+  --md-sys-color-surface-container-high: #14241F;
+  --md-sys-color-surface-container-highest: #1A3029;
+  --md-sys-color-primary: #00E599;
+  --md-sys-color-on-primary: #00291A;
+  --md-sys-color-primary-container: #003D27;
+  --md-sys-color-on-primary-container: #6BFFC5;
+  --md-sys-color-accent: #00B8D9;
+  --md-sys-glow: rgba(0, 229, 153, 0.25);
+}
+
+/* Theme 3: Batman (WayneTech Gotham Yellow) */
+body[data-theme="batman"] {
+  --md-sys-color-surface: #060709;
+  --md-sys-color-surface-container: #0D0F14;
+  --md-sys-color-surface-container-high: #141720;
+  --md-sys-color-surface-container-highest: #1D212E;
+  --md-sys-color-primary: #F5CB23;
+  --md-sys-color-on-primary: #211A00;
+  --md-sys-color-primary-container: #3D3100;
+  --md-sys-color-on-primary-container: #FFE77D;
+  --md-sys-color-accent: #E0E0E0;
+  --md-sys-glow: rgba(245, 203, 35, 0.22);
+}
+
+/* Theme 4: Reacher (Tactical Olive & Steel Slate) */
+body[data-theme="reacher"] {
+  --md-sys-color-surface: #0A0D0E;
+  --md-sys-color-surface-container: #111719;
+  --md-sys-color-surface-container-high: #182124;
+  --md-sys-color-surface-container-highest: #222D31;
+  --md-sys-color-primary: #9CCC65;
+  --md-sys-color-on-primary: #152402;
+  --md-sys-color-primary-container: #263D08;
+  --md-sys-color-on-primary-container: #DCFF9E;
+  --md-sys-color-accent: #78909C;
+  --md-sys-glow: rgba(156, 204, 101, 0.22);
+}
+
+/* Theme 5: TVF Pitchers (Amber Flow) */
+body[data-theme="pitchers"] {
+  --md-sys-color-surface: #0F0B07;
+  --md-sys-color-surface-container: #1A130C;
+  --md-sys-color-surface-container-high: #241A11;
+  --md-sys-color-surface-container-highest: #322518;
+  --md-sys-color-primary: #FFA000;
+  --md-sys-color-on-primary: #2B1500;
+  --md-sys-color-primary-container: #472600;
+  --md-sys-color-on-primary-container: #FFD599;
+  --md-sys-color-accent: #FFD54F;
+  --md-sys-glow: rgba(255, 160, 0, 0.25);
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  width: 380px;
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  user-select: none;
+}
+
+body::-webkit-scrollbar {
+  width: 4px;
+}
+body::-webkit-scrollbar-track {
+  background: var(--md-sys-color-surface);
+}
+body::-webkit-scrollbar-thumb {
+  background: var(--md-sys-color-surface-container-highest);
+  border-radius: 4px;
+}
+
+.m3-scaffold {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Material 3 Top App Bar
+   ========================================================================== */
+.m3-top-app-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 12, 16, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.m3-brand-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.m3-logo-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--md-sys-color-surface-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.m3-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.m3-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.m3-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.m3-headline-small {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: var(--md-sys-color-primary);
+}
+
+.m3-badge-tonal {
+  font-size: 9px;
+  font-weight: 700;
+  background: var(--md-sys-color-surface-container-highest);
+  color: var(--md-sys-color-on-surface-variant);
+  padding: 1px 5px;
+  border-radius: 6px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.m3-tagline {
+  font-size: 10.5px;
+  color: var(--md-sys-color-on-surface-variant);
+  font-style: italic;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.m3-master-switch-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.m3-label-micro {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: var(--md-sys-color-primary);
+}
+
+/* ==========================================================================
+   Material 3 Switch Component
+   ========================================================================== */
+.m3-switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.m3-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.m3-switch-track {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--md-sys-color-surface-container-high);
+  border: 1.5px solid var(--md-sys-color-outline);
+  border-radius: 24px;
+  transition: all 0.25s var(--md-sys-motion-standard);
+}
+
+.m3-switch-thumb {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 4px;
+  bottom: 4.5px;
+  background-color: var(--md-sys-color-on-surface-variant);
+  border-radius: 50%;
+  transition: all 0.25s var(--md-sys-motion-standard);
+}
+
+/* Switch ON State */
+.m3-switch input:checked + .m3-switch-track {
+  background-color: var(--md-sys-color-primary);
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 10px var(--md-sys-glow);
+}
+
+.m3-switch input:checked + .m3-switch-track .m3-switch-thumb {
+  background-color: var(--md-sys-color-on-primary);
+  transform: translateX(18px);
+  width: 16px;
+  height: 16px;
+  bottom: 2.5px;
+}
+
+/* ==========================================================================
+   Main Content Layout
+   ========================================================================== */
+.m3-content {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   M3 Segmented Control (Theme Tabs)
+   ========================================================================== */
+.m3-segmented-control-wrapper {
+  display: flex;
+}
+
+.m3-segmented-control {
+  width: 100%;
+  background: var(--md-sys-color-surface-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 12px;
+  padding: 3px;
+  display: flex;
+  gap: 2px;
+}
+
+.m3-segment-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s var(--md-sys-motion-standard);
+}
+
+.m3-segment-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface-variant);
+  transition: color 0.2s ease;
+}
+
+.m3-segment-btn:hover .m3-segment-label {
+  color: var(--md-sys-color-on-surface);
+}
+
+.m3-segment-btn.active {
+  background: var(--md-sys-color-surface-container-highest);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.m3-segment-btn.active .m3-segment-label {
+  color: var(--md-sys-color-primary);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   HERO 1: ONE TOGGLE TO HIDE NOISE
+   ========================================================================== */
+.m3-noise-hero-card {
+  width: 100%;
+  background: linear-gradient(135deg, var(--md-sys-color-surface-container-high) 0%, var(--md-sys-color-surface-container) 100%);
+  border: 1.5px solid var(--md-sys-color-primary);
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px var(--md-sys-glow);
+}
+
+.m3-noise-icon-container {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 11px;
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m3-noise-svg {
+  width: 20px;
+  height: 20px;
+}
+
+.m3-noise-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.m3-noise-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.m3-noise-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--md-sys-color-on-surface);
+}
+
+.m3-badge-highlight {
+  font-size: 8.5px;
+  font-weight: 800;
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  padding: 1px 5px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.m3-noise-desc {
+  font-size: 9.5px;
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.25;
+}
+
+/* ==========================================================================
+   HERO 2: Point & Click Eliminator Action Card
+   ========================================================================== */
+.m3-hero-action-card {
+  width: 100%;
+  background: linear-gradient(135deg, var(--md-sys-color-surface-container) 0%, var(--md-sys-color-surface-container-high) 100%);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 16px;
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.25s var(--md-sys-motion-standard);
+  text-align: left;
+}
+
+.m3-hero-action-card:hover {
+  background: var(--md-sys-color-surface-container-high);
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 10px var(--md-sys-glow);
+  transform: translateY(-1px);
+}
+
+.m3-hero-icon-container {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 11px;
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m3-crosshair-svg {
+  width: 18px;
+  height: 18px;
+  animation: m3Pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes m3Pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+.m3-hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.m3-title-medium {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--md-sys-color-on-surface);
+}
+
+.m3-hero-trailing-arrow {
+  color: var(--md-sys-color-on-surface-variant);
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Material 3 Expandable Accordion Card
+   ========================================================================== */
+.m3-accordion-card {
+  background: var(--md-sys-color-surface-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.m3-accordion-card.is-expanded {
+  border-color: var(--md-sys-color-outline);
+}
+
+.m3-accordion-header {
+  width: 100%;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.m3-accordion-header:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.m3-accordion-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.m3-accordion-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--md-sys-color-primary);
+}
+
+.m3-accordion-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--md-sys-color-on-surface);
+}
+
+.m3-accordion-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.m3-chevron-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--md-sys-color-on-surface-variant);
+  transition: transform 0.25s var(--md-sys-motion-standard);
+}
+
+.m3-accordion-header[aria-expanded="true"] .m3-chevron-icon {
+  transform: rotate(180deg);
+}
+
+.m3-accordion-collapse {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s var(--md-sys-motion-emphasized), opacity 0.25s ease;
+}
+
+.m3-accordion-collapse.open {
+  max-height: 520px;
+  opacity: 1;
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.m3-accordion-content {
+  padding: 0;
+}
+
+/* ==========================================================================
+   Badges
+   ========================================================================== */
+.m3-badge-surface {
+  font-size: 9px;
+  font-weight: 700;
+  background: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-primary);
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* ==========================================================================
+   List Items inside Accordion
+   ========================================================================== */
+.m3-list-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.m3-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  transition: background-color 0.15s ease;
+}
+
+.m3-list-item:last-child {
+  border-bottom: none;
+}
+
+.m3-list-item:hover {
+  background: var(--md-sys-color-surface-container-high);
+}
+
+.m3-list-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 275px;
+}
+
+.m3-list-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
+}
+
+.m3-list-subtitle {
+  font-size: 9.5px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.m3-body-small {
+  font-size: 9.5px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* ==========================================================================
+   Custom Elimination Rules inside Accordion
+   ========================================================================== */
+.m3-custom-container {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.m3-input-field-row {
+  display: flex;
+  gap: 8px;
+}
+
+.m3-text-field {
+  flex: 1;
+  background: var(--md-sys-color-surface-container-high);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: 10px;
+  padding: 2px 10px;
+  display: flex;
+  align-items: center;
+  transition: border-color 0.2s ease;
+}
+
+.m3-text-field:focus-within {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 2px var(--md-sys-glow);
+}
+
+.m3-text-field input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--md-sys-color-on-surface);
+  padding: 6px 0;
+}
+
+.m3-text-field input::placeholder {
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10.5px;
+}
+
+.m3-btn-filled {
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border: none;
+  border-radius: 10px;
+  padding: 0 14px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.m3-btn-filled:hover {
+  opacity: 0.92;
+  box-shadow: 0 2px 8px var(--md-sys-glow);
+}
+
+.m3-custom-rules-list {
+  max-height: 110px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.m3-custom-rules-list::-webkit-scrollbar {
+  width: 4px;
+}
+.m3-custom-rules-list::-webkit-scrollbar-thumb {
+  background: var(--md-sys-color-outline-variant);
+  border-radius: 4px;
+}
+
+.m3-empty-state {
+  text-align: center;
+  font-size: 10px;
+  color: var(--md-sys-color-on-surface-variant);
+  padding: 10px 4px;
+  font-style: italic;
+}
+
+.m3-chip {
+  background: var(--md-sys-color-surface-container-high);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 8px;
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+
+.m3-chip:hover {
+  background: var(--md-sys-color-surface-container-highest);
+  border-color: var(--md-sys-color-outline);
+}
+
+.m3-chip-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--md-sys-color-on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+}
+
+.m3-chip-delete {
+  background: none;
+  border: none;
+  color: #FF5252;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+}
+
+.m3-chip-delete:hover {
+  background: rgba(255, 82, 82, 0.15);
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   Material 3 Footer
+   ========================================================================== */
+.m3-footer {
+  padding: 10px 16px;
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--md-sys-color-surface);
+}
+
+.m3-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.m3-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00E599;
+  box-shadow: 0 0 6px #00E599;
+}
+
+.m3-label-small {
+  font-size: 10px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.m3-btn-text {
+  background: none;
+  border: none;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.m3-btn-text:hover {
+  color: var(--md-sys-color-on-surface);
+}
