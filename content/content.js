@@ -117,10 +117,43 @@
       }
     `,
     hide_right_sidebar: `
-      /* Target the exact bar provided by user: <header role="banner"> */
+      /* Target the right sidebar column and complementary aside */
+      [data-testid="sidebarColumn"],
+      div[data-testid="sidebarColumn"],
+      [role="complementary"],
+      aside[role="complementary"] {
+        display: none !important;
+        width: 0 !important;
+        min-width: 0 !important;
+        max-width: 0 !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        flex-grow: 0 !important;
+        flex-shrink: 1 !important;
+      }
+
+      /* Center and widen primary timeline feed when right sidebar is hidden */
+      [data-testid="primaryColumn"],
+      div[data-testid="primaryColumn"] {
+        max-width: 680px !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        border-right-width: 1px !important;
+      }
+
+      main[role="main"] {
+        align-items: center !important;
+      }
+
+      main[role="main"] > div > div {
+        justify-content: center !important;
+        max-width: 100% !important;
+      }
+    `,
+    hide_left_nav: `
       header[role="banner"],
-      header[role="banner"] > div,
-      div:has(> header[role="banner"]) {
+      header[role="banner"] > div {
         display: none !important;
         width: 0 !important;
         min-width: 0 !important;
@@ -130,42 +163,6 @@
         pointer-events: none !important;
         flex-grow: 0 !important;
       }
-
-      /* Also target right sidebar column & rail */
-      [data-testid="sidebarColumn" i],
-      div[data-testid="sidebarColumn" i],
-      [role="complementary"],
-      aside[role="complementary"],
-      div:has(> [data-testid="sidebarColumn" i]),
-      div:has(> aside[role="complementary"]) {
-        display: none !important;
-        width: 0 !important;
-        min-width: 0 !important;
-        max-width: 0 !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-      }
-
-      /* Expand and center the main timeline feed */
-      main[role="main"],
-      [data-testid="primaryColumn"],
-      div[data-testid="primaryColumn"] {
-        max-width: 720px !important;
-        width: 100% !important;
-        margin: 0 auto !important;
-        border-right-width: 1px !important;
-      }
-      main[role="main"] > div {
-        width: 100% !important;
-        max-width: 100% !important;
-      }
-      main[role="main"] > div > div {
-        width: 100% !important;
-        max-width: 720px !important;
-        margin: 0 auto !important;
-        justify-content: center !important;
-      }
     `
   };
 
@@ -173,7 +170,8 @@
   const DEFAULT_SETTINGS = {
     master_active: true,
     theme: "sicario",
-    hide_right_sidebar: false,
+    hide_right_sidebar: true,
+    hide_left_nav: false,
     hide_whats_happening: true,
     hide_todays_news: true,
     hide_who_to_follow: true,
@@ -290,51 +288,52 @@
       });
     }
 
-    // Target exact <header role="banner"> element provided by user
+    // Right Sidebar Entirely failsafe
+    const sidebars = document.querySelectorAll('[data-testid="sidebarColumn" i], [role="complementary"], aside[role="complementary"]');
+    sidebars.forEach(sb => {
+      if (currentSettings.hide_right_sidebar) {
+        sb.style.setProperty('display', 'none', 'important');
+        sb.style.setProperty('visibility', 'hidden', 'important');
+        sb.style.setProperty('width', '0px', 'important');
+        sb.style.setProperty('min-width', '0px', 'important');
+        sb.style.setProperty('max-width', '0px', 'important');
+        sb.style.setProperty('flex-grow', '0', 'important');
+      } else {
+        sb.style.removeProperty('display');
+        sb.style.removeProperty('visibility');
+        sb.style.removeProperty('width');
+        sb.style.removeProperty('min-width');
+        sb.style.removeProperty('max-width');
+        sb.style.removeProperty('flex-grow');
+      }
+    });
+
+    const primary = document.querySelector('[data-testid="primaryColumn"]');
+    if (primary) {
+      if (currentSettings.hide_right_sidebar) {
+        primary.style.setProperty('margin', '0 auto', 'important');
+        primary.style.setProperty('max-width', '680px', 'important');
+      } else {
+        primary.style.removeProperty('margin');
+        primary.style.removeProperty('max-width');
+      }
+    }
+
+    // Left Navigation Bar (header[role="banner"]) failsafe
     const headerBanners = document.querySelectorAll('header[role="banner"]');
     headerBanners.forEach(headerBanner => {
-      if (currentSettings.hide_right_sidebar) {
+      if (currentSettings.hide_left_nav) {
         headerBanner.style.setProperty('display', 'none', 'important');
         headerBanner.style.setProperty('visibility', 'hidden', 'important');
         headerBanner.style.setProperty('width', '0px', 'important');
-        if (headerBanner.parentElement) {
-          headerBanner.parentElement.style.setProperty('width', '0px', 'important');
-        }
+        headerBanner.style.setProperty('max-width', '0px', 'important');
       } else {
         headerBanner.style.removeProperty('display');
         headerBanner.style.removeProperty('visibility');
         headerBanner.style.removeProperty('width');
-        if (headerBanner.parentElement) {
-          headerBanner.parentElement.style.removeProperty('width');
-        }
+        headerBanner.style.removeProperty('max-width');
       }
     });
-
-    // Right Sidebar Entirely failsafe
-    const sidebars = document.querySelectorAll('[data-testid="sidebarColumn" i], [role="complementary"], aside[role="complementary"]');
-    if (currentSettings.hide_right_sidebar) {
-      sidebars.forEach(sb => {
-        sb.style.setProperty('display', 'none', 'important');
-        sb.style.setProperty('visibility', 'hidden', 'important');
-        sb.style.setProperty('width', '0px', 'important');
-        sb.style.setProperty('max-width', '0px', 'important');
-      });
-      const primary = document.querySelector('[data-testid="primaryColumn"]');
-      if (primary) {
-        primary.style.setProperty('margin', '0 auto', 'important');
-      }
-    } else {
-      sidebars.forEach(sb => {
-        sb.style.removeProperty('display');
-        sb.style.removeProperty('visibility');
-        sb.style.removeProperty('width');
-        sb.style.removeProperty('max-width');
-      });
-      const primary = document.querySelector('[data-testid="primaryColumn"]');
-      if (primary) {
-        primary.style.removeProperty('margin');
-      }
-    }
   }
 
   function applySettings(settings) {

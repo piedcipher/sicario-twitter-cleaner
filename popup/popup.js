@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "hide_who_to_follow",
     "hide_grok",
     "hide_premium_promos",
-    "hide_view_counts"
+    "hide_view_counts",
+    "hide_right_sidebar"
   ];
 
   // All granular toggle keys
@@ -46,13 +47,15 @@ document.addEventListener("DOMContentLoaded", () => {
     "hide_premium_promos",
     "hide_view_counts",
     "hide_right_sidebar",
+    "hide_left_nav",
     "hide_explore_tab"
   ];
 
   const DEFAULT_SETTINGS = {
     master_active: true,
     theme: "sicario",
-    hide_right_sidebar: false,
+    hide_right_sidebar: true,
+    hide_left_nav: false,
     hide_whats_happening: true,
     hide_todays_news: true,
     hide_who_to_follow: true,
