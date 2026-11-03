@@ -111,17 +111,22 @@ body {
   background-color: var(--md-sys-color-surface);
   color: var(--md-sys-color-on-surface);
   user-select: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--md-sys-color-outline) var(--md-sys-color-surface);
 }
 
 body::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
 body::-webkit-scrollbar-track {
   background: var(--md-sys-color-surface);
 }
 body::-webkit-scrollbar-thumb {
-  background: var(--md-sys-color-surface-container-highest);
+  background: var(--md-sys-color-outline);
   border-radius: 4px;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--md-sys-color-primary);
 }
 
 .m3-scaffold {
@@ -541,13 +546,36 @@ body::-webkit-scrollbar-thumb {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.35s var(--md-sys-motion-emphasized), opacity 0.25s ease;
+  transition: max-height 0.3s var(--md-sys-motion-emphasized), opacity 0.2s ease;
 }
 
 .m3-accordion-collapse.open {
-  max-height: 520px;
+  max-height: 360px;
+  overflow-y: auto;
+  overflow-x: hidden;
   opacity: 1;
   border-top: 1px solid var(--md-sys-color-outline-variant);
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--md-sys-color-outline) var(--md-sys-color-surface-container);
+}
+
+/* Custom Sleek Scrollbar for Accordion Content */
+.m3-accordion-collapse::-webkit-scrollbar {
+  width: 5px;
+}
+
+.m3-accordion-collapse::-webkit-scrollbar-track {
+  background: var(--md-sys-color-surface-container);
+}
+
+.m3-accordion-collapse::-webkit-scrollbar-thumb {
+  background: var(--md-sys-color-outline);
+  border-radius: 4px;
+}
+
+.m3-accordion-collapse::-webkit-scrollbar-thumb:hover {
+  background: var(--md-sys-color-primary);
 }
 
 .m3-accordion-content {

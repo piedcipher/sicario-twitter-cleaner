@@ -140,6 +140,12 @@ document.addEventListener("DOMContentLoaded", () => {
       trigger.setAttribute("aria-expanded", String(nextState));
       collapse.classList.toggle("open", nextState);
       card.classList.toggle("is-expanded", nextState);
+
+      if (nextState) {
+        setTimeout(() => {
+          card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }, 120);
+      }
     });
   }
 
